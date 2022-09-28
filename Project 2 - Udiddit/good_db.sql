@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS
 CREATE TABLE "users"
 (
  id SERIAL PRIMARY KEY,
- username VARCHAR(25) NOT NULL,
+ username VARCHAR(30) NOT NULL,
  last_login TIMESTAMP,
  CONSTRAINT "unique_usernames" UNIQUE ("username"),
  CONSTRAINT "non_empty_username" CHECK (LENGTH(TRIM("username")) > 0)
@@ -32,7 +32,7 @@ CREATE TABLE "users"
 CREATE TABLE "topics"
 (
  id SERIAL PRIMARY KEY,
- name VARCHAR(30) NOT NULL,
+ name VARCHAR(50) NOT NULL,
  description VARCHAR(500),
  CONSTRAINT "unique_topics" UNIQUE ("name"),
  CONSTRAINT "non_empty_topic_name" CHECK (LENGTH(TRIM("name")) > 0)
@@ -65,9 +65,9 @@ CREATE TABLE "topics"
 CREATE TABLE "posts"
 (
  id SERIAL PRIMARY KEY,
- title VARCHAR(100) NOT NULL,
+ title VARCHAR(50) NOT NULL,
  created_on TIMESTAMP,
- url VARCHAR(400),
+ url VARCHAR(500),
  text_content TEXT,
  topic_id INTEGER REFERENCES "topics" ON DELETE CASCADE,
  user_id INTEGER REFERENCES "users" ON DELETE SET NULL,
